@@ -118,64 +118,6 @@ p { margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .chip { font-family: var(--f-mono); font-size: 11.5px; padding: 4px 9px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
 
-/* Profile card */
-.profile { padding: 26px; }
-.profile-id { display: flex; align-items: center; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.profile-id .mono { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; background: var(--accent); color: var(--surface); font-family: var(--f-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
-.profile-id strong { display: block; font-family: var(--f-display); font-size: 20px; letter-spacing: -0.01em; }
-.profile-id span { font-size: 13.5px; color: var(--muted); }
-.facts { margin: 0; display: grid; }
-.facts > div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--line); }
-.facts dt { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
-.facts dd { margin: 0; font-weight: 600; font-size: 14.5px; line-height: 1.45; min-width: 0; }
-.facts small { font-weight: 400; color: var(--muted); font-size: 13px; }
-.profile-tools { padding-top: 16px; }
-@media (max-width: 420px) { .facts > div { grid-template-columns: 1fr; gap: 2px; } }
-
-/* Dashboard panel */
-.dash { padding: 22px; display: grid; gap: 18px; }
-.dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.dash-head strong { display: block; font-family: var(--f-display); font-size: 20px; letter-spacing: -0.01em; margin-top: 2px; }
-.live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
-.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-@media (max-width: 460px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-.kpi { background: var(--bg); border-radius: 12px; padding: 12px; min-width: 0; }
-.kpi b { display: block; font-family: var(--f-display); font-size: 30px; line-height: 1; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
-.kpi span { display: block; font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.3; }
-.hbar-chart { display: grid; gap: 9px; }
-.chart-title { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-.chart-title .label { font-size: 10.5px; }
-.hbar { display: grid; grid-template-columns: 150px 1fr 18px; gap: 10px; align-items: center; font-size: 13px; }
-.hb-name { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hb-track { height: 10px; border-radius: 5px; background: var(--bg); overflow: hidden; }
-.hb-track i { display: block; height: 100%; border-radius: 5px; background: var(--accent); }
-.hbar:first-of-type .hb-track i { background: var(--sun); }
-.hb-val { font-family: var(--f-mono); font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
-@media (max-width: 420px) { .hbar { grid-template-columns: 112px 1fr 18px; } }
-.dash-foot { display: grid; gap: 2px; padding-top: 14px; border-top: 1px dashed var(--line); font-weight: 600; font-size: 14px; }
-
-/* Architecture diagrams */
-.arch { margin: 0; padding: 22px; background: var(--bg); border-bottom: 1px solid var(--line); }
-.arch figcaption { margin-bottom: 14px; }
-.flow { display: grid; justify-items: center; }
-.node-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
-.node { width: 100%; max-width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; text-align: center; min-width: 0; }
-.node small { display: block; font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.node b { display: block; font-size: 14px; line-height: 1.3; margin-top: 2px; }
-.node em { display: block; font-style: normal; font-family: var(--f-mono); font-size: 11px; color: var(--accent); margin-top: 3px; }
-.node.core { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
-.node.side { border-style: dashed; }
-.link { width: 2px; height: 22px; background: var(--accent); position: relative; }
-.link::after { content: ""; position: absolute; left: 50%; bottom: -1px; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--accent); border-bottom: 0; }
-
-/* Case study */
-.project-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-.case { margin: 6px 0 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
-.case > div { display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding-block: 12px; border-bottom: 1px solid var(--line); }
-.case dt { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); padding-top: 3px; }
-.case dd { margin: 0; font-size: 14.5px; min-width: 0; }
-@media (max-width: 480px) { .case > div { grid-template-columns: 1fr; gap: 2px; } }
-
 /* Ticker */
 .ticker { border-block: 1px solid var(--line); overflow: hidden; background: var(--surface); }
 .ticker-track { display: flex; gap: 36px; width: max-content; padding-block: 16px; animation: slide 38s linear infinite; }
@@ -199,8 +141,8 @@ section.block { padding-block: 88px 24px; scroll-margin-top: 70px; }
 .project { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
 .preview { background: var(--bg); border-bottom: 1px solid var(--line); padding: 20px; min-height: 270px; position: relative; }
 .tag-concept { position: absolute; top: 14px; right: 14px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; }
-.project-body { padding: 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
-.project-body h3 { font-size: clamp(26px, 3vw, 32px); font-weight: 700; margin-top: 6px; }
+.project-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.project-body h3 { font-size: 28px; font-weight: 700; }
 .project-body p { color: var(--muted); }
 .project-body .chips { margin-top: auto; padding-top: 8px; }
 
@@ -328,29 +270,45 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
-      <aside class="panel dash reveal d2" aria-label="Profil en chiffres">
-        <div class="dash-head">
-          <div><span class="label">Tableau de bord</span><strong>Profil en chiffres</strong></div>
-          <span class="live"><span class="dot" aria-hidden="true"></span>2025 – 2026</span>
+      <aside class="panel reveal d2" aria-label="Ma démarche">
+        <div class="panel-head">
+          <span class="label">Ma démarche</span>
+          <span class="label" style="color:var(--accent)">Données → Décisions</span>
         </div>
-        <div class="kpis">
-          <div class="kpi"><b>2</b><span>Projets réalisés</span></div>
-          <div class="kpi"><b>19</b><span>Outils maîtrisés</span></div>
-          <div class="kpi"><b>6</b><span>Domaines</span></div>
-          <div class="kpi"><b>4</b><span>Langues</span></div>
-        </div>
-        <div class="hbar-chart">
-          <div class="chart-title"><span>Outils par domaine</span><span class="label">nb d'outils</span></div>
-          <div class="hbar"><span class="hb-name">Analyse &amp; langages</span><span class="hb-track"><i style="width:100%"></i></span><span class="hb-val">5</span></div>
-          <div class="hbar"><span class="hb-name">Data &amp; BI</span><span class="hb-track"><i style="width:80%"></i></span><span class="hb-val">4</span></div>
-          <div class="hbar"><span class="hb-name">Visualisation &amp; web</span><span class="hb-track"><i style="width:80%"></i></span><span class="hb-val">4</span></div>
-          <div class="hbar"><span class="hb-name">Outils &amp; collaboration</span><span class="hb-track"><i style="width:60%"></i></span><span class="hb-val">3</span></div>
-          <div class="hbar"><span class="hb-name">Bases de données</span><span class="hb-track"><i style="width:40%"></i></span><span class="hb-val">2</span></div>
-          <div class="hbar"><span class="hb-name">Applications mobiles</span><span class="hb-track"><i style="width:20%"></i></span><span class="hb-val">1</span></div>
-        </div>
-        <div class="dash-foot">
-          <span class="label">Formation</span>
-          <span>Analyse de Performance Digitale · ISEP Diamniadio · L2</span>
+        <div class="stages">
+          <div class="stage">
+            <span class="n">IN</span>
+            <div>
+              <h3>Collecter &amp; nettoyer</h3>
+              <p>Requêtes SQL, Excel et Python pour obtenir une base fiable.</p>
+              <div class="chips"><span class="chip">SELECT … GROUP BY</span><span class="chip">pandas</span><span class="chip">PostgreSQL</span></div>
+            </div>
+          </div>
+          <div class="stage">
+            <span class="n">Σ</span>
+            <div>
+              <h3>Analyser</h3>
+              <p>Choisir les KPI qui répondent à une vraie question.</p>
+              <svg viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="0" y1="43" x2="300" y2="43" stroke="var(--line)" stroke-width="1"/>
+                <g fill="var(--accent)" opacity=".85">
+                  <rect x="4" y="26" width="26" height="17" rx="3"/><rect x="40" y="18" width="26" height="25" rx="3"/>
+                  <rect x="76" y="22" width="26" height="21" rx="3"/><rect x="112" y="12" width="26" height="31" rx="3"/>
+                  <rect x="148" y="16" width="26" height="27" rx="3"/><rect x="184" y="8" width="26" height="35" rx="3"/>
+                  <rect x="220" y="11" width="26" height="32" rx="3"/>
+                </g>
+                <rect x="256" y="3" width="26" height="40" rx="3" fill="var(--sun)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stage">
+            <span class="n">OUT</span>
+            <div>
+              <h3>Restituer</h3>
+              <p>Des tableaux de bord lisibles en un coup d'œil, sur Power BI ou le web.</p>
+              <div class="chips"><span class="chip">Power BI</span><span class="chip">Chart.js</span><span class="chip">Django</span></div>
+            </div>
+          </div>
         </div>
       </aside>
     </div>
@@ -373,58 +331,58 @@ footer a:hover { color: var(--accent); }
 
       <div class="projects">
         <article class="project">
-          <figure class="arch" aria-label="Schéma de fonctionnement de l'agent conversationnel">
-            <figcaption class="label">Architecture</figcaption>
-            <div class="flow">
-              <div class="node"><small>Entrée</small><b>Question de l'utilisateur</b></div>
-              <div class="link" aria-hidden="true"></div>
-              <div class="node-row">
-                <div class="node core"><small>Traitement</small><b>Agent conversationnel IA</b></div>
-                <div class="node side"><small>Source</small><b>Statistiques régionales du Sénégal</b></div>
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">Analyse régionale · Sénégal</span>
+            <div class="p1">
+              <div class="chat">
+                <div class="bubble q">Quelle région a la plus forte densité ?</div>
+                <div class="bubble a">Dakar arrive en tête, loin devant Thiès et Diourbel. Je l'affiche sur la carte.</div>
+                <div class="bubble q">Compare avec Kédougou.</div>
               </div>
-              <div class="link" aria-hidden="true"></div>
-              <div class="node-row">
-                <div class="node"><small>Sortie</small><b>Tableau de bord</b><em>Chart.js</em></div>
-                <div class="node"><small>Sortie</small><b>Carte interactive</b><em>SVG · 14 régions</em></div>
+              <div>
+                <div class="reg-head"><span class="label" style="font-size:10px">Régions</span><span class="label" style="font-size:10px;color:var(--ink)">14</span></div>
+                <div class="regions">
+                  <span class="region hi" style="--w:70%">Dakar</span><span class="region" style="--w:45%">Thiès</span>
+                  <span class="region" style="--w:42%">Diourbel</span><span class="region" style="--w:28%">Kaolack</span>
+                  <span class="region" style="--w:24%">Fatick</span><span class="region" style="--w:22%">Ziguinchor</span>
+                  <span class="region" style="--w:20%">Louga</span><span class="region" style="--w:20%">Saint-Louis</span>
+                  <span class="region" style="--w:18%">Kolda</span><span class="region" style="--w:17%">Sédhiou</span>
+                  <span class="region" style="--w:15%">Kaffrine</span><span class="region" style="--w:12%">Matam</span>
+                  <span class="region" style="--w:10%">Tambacounda</span><span class="region hi" style="--w:7%">Kédougou</span>
+                </div>
               </div>
             </div>
-          </figure>
+          </div>
           <div class="project-body">
-            <div class="project-top"><span class="label">Data &amp; intelligence artificielle</span><span class="label">Projet de formation</span></div>
+            <span class="label">Data &amp; intelligence artificielle</span>
             <h3>Agent conversationnel IA</h3>
-            <p>Un assistant qui répond en langage naturel aux questions sur les statistiques régionales du Sénégal, avec un tableau de bord et une carte interactive des 14 régions.</p>
-            <dl class="case">
-              <div><dt>Objectif</dt><dd>Rendre les statistiques régionales consultables sans connaissances techniques.</dd></div>
-              <div><dt>Réalisation</dt><dd>Interface de chat, graphiques Chart.js, carte SVG cliquable des 14 régions.</dd></div>
-              <div><dt>Compétences</dt><dd>Intelligence artificielle, visualisation de données, JavaScript.</dd></div>
-            </dl>
+            <p>Un assistant qui répond en langage naturel aux questions sur les statistiques régionales du Sénégal. Interface de chat, dashboard Chart.js et carte SVG interactive des 14 régions.</p>
             <div class="chips"><span class="chip">IA</span><span class="chip">Chart.js</span><span class="chip">SVG</span><span class="chip">JavaScript</span></div>
           </div>
         </article>
 
         <article class="project">
-          <figure class="arch" aria-label="Schéma de fonctionnement de SmartPresent">
-            <figcaption class="label">Architecture</figcaption>
-            <div class="flow">
-              <div class="node"><small>Interface</small><b>Dashboard web</b><em>Suivi des présences</em></div>
-              <div class="link" aria-hidden="true"></div>
-              <div class="node-row">
-                <div class="node core"><small>Backend · mon rôle</small><b>API Django REST</b><em>Authentification JWT</em></div>
-                <div class="node side"><small>Équipe</small><b>Dépôt GitHub</b></div>
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">SmartPresent · Présences</span>
+            <div class="p2">
+              <div class="p2-top">
+                <div class="mini"><span class="label" style="font-size:10px">Séance</span><b>Aujourd'hui</b></div>
+                <div class="mini"><span class="label" style="font-size:10px">Vue</span><b>Tableau de bord</b></div>
               </div>
-              <div class="link" aria-hidden="true"></div>
-              <div class="node"><small>Stockage</small><b>Base de données des présences</b></div>
+              <div class="rows">
+                <div class="row"><span>Enregistrement des étudiants</span><span class="ok">✓</span></div>
+                <div class="row"><span>Suivi des présences</span><span class="ok">✓</span></div>
+                <div class="row"><span>Authentification</span><code>JWT</code></div>
+                <div class="row"><span>Point d'accès</span><code>GET /api/presences/</code></div>
+              </div>
             </div>
-          </figure>
+          </div>
           <div class="project-body">
-            <div class="project-top"><span class="label">Projet académique</span><span class="label">Travail en équipe</span></div>
+            <span class="label">Projet académique · en équipe</span>
             <h3>SmartPresent</h3>
-            <p>Application de suivi et d'analyse des présences des étudiants, avec un tableau de bord web.</p>
-            <dl class="case">
-              <div><dt>Objectif</dt><dd>Suivre les présences des étudiants et en analyser les statistiques.</dd></div>
-              <div><dt>Mon rôle</dt><dd>Développeuse backend : API Django REST, authentification JWT, dashboard web.</dd></div>
-              <div><dt>Collaboration</dt><dd>Gestion du dépôt GitHub de l'équipe.</dd></div>
-            </dl>
+            <p>Application de suivi et d'analyse des présences. J'y ai tenu le rôle backend : API Django REST, dashboard web et gestion du dépôt GitHub de l'équipe.</p>
             <div class="chips"><span class="chip">Django</span><span class="chip">REST API</span><span class="chip">JWT</span><span class="chip">GitHub</span></div>
           </div>
         </article>
