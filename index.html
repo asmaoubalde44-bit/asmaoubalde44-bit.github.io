@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asmaou Baldé</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio d'Asmaou Baldé : analyse de données, Power BI, SQL, tableaux de bord et développement web & mobile à Dakar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial single column, a "data desk" feel — big name, a live pipeline panel, project cards with conceptual previews, quiet ledger-style skills. */
+:root {
+  --bg: #F2F4F7;
+  --surface: #FFFFFF;
+  --ink: #111827;
+  --muted: #5B6475;
+  --line: #DCE1EA;
+  --accent: #2446E8;      /* cobalt */
+  --accent-soft: #E3E8FD;
+  --sun: #E89A1C;         /* saffron, used sparingly */
+  --ok: #148A5B;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --maxw: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1020; --surface: #141A2E; --ink: #EEF1F8; --muted: #9AA3B8; --line: #263050;
+    --accent: #7C93FF; --accent-soft: #1D2650; --sun: #F3B54A; --ok: #3CCB8E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1020; --surface: #141A2E; --ink: #EEF1F8; --muted: #9AA3B8; --line: #263050;
+  --accent: #7C93FF; --accent-soft: #1D2650; --sun: #F3B54A; --ok: #3CCB8E; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+
+.wrap {
+  max-width: var(--maxw); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+.label {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { font-family: var(--f-display); font-weight: 800; font-size: 22px; text-decoration: none; letter-spacing: -0.03em; }
+.logo span { color: var(--accent); }
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.nav ul a { text-decoration: none; font-weight: 600; font-size: 14px; color: var(--muted); }
+.nav ul a:hover { color: var(--ink); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 14px/1 var(--f-body); text-decoration: none; cursor: pointer;
+  padding: 12px 18px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); transition: transform .15s, border-color .15s, background .15s;
+}
+.btn:hover { border-color: var(--ink); transform: translateY(-1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(1.08); }
+:root[data-theme="dark"] .btn.primary { color: #0C1020; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #0C1020; } }
+.btn svg { width: 16px; height: 16px; flex: none; }
+@media (max-width: 760px) { .nav ul { display: none; } }
+
+/* Hero */
+.hero { padding-block: 56px 40px; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+.hero-grid > * { min-width: 0; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+.kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 20%, transparent); }
+.hero h1 { font-size: clamp(56px, 11vw, 124px); font-weight: 800; letter-spacing: -0.045em; line-height: 0.92; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.thesis { font-family: var(--f-display); font-weight: 500; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.25; margin-top: 26px; max-width: 26ch; }
+.thesis mark { background: none; color: inherit; box-shadow: inset 0 -0.38em 0 color-mix(in srgb, var(--sun) 45%, transparent); }
+.intro { color: var(--muted); margin-top: 18px; max-width: 58ch; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.where { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+
+/* Pipeline panel */
+.panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px;
+  box-shadow: 0 30px 60px -40px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px dashed var(--line); }
+.stages { display: grid; gap: 12px; margin-top: 16px; }
+.stage { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; padding: 14px; border-radius: 14px; background: var(--bg); }
+.stage .n { font-family: var(--f-mono); font-size: 12px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.stage h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.stage p { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+.stage svg { display: block; margin-top: 10px; width: 100%; height: 44px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip { font-family: var(--f-mono); font-size: 11.5px; padding: 4px 9px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+
+/* Ticker */
+.ticker { border-block: 1px solid var(--line); overflow: hidden; background: var(--surface); }
+.ticker-track { display: flex; gap: 36px; width: max-content; padding-block: 16px; animation: slide 38s linear infinite; }
+.ticker span { font-family: var(--f-display); font-weight: 600; font-size: 20px; white-space: nowrap; display: inline-flex; align-items: center; gap: 36px; }
+.ticker span::after { content: "✳"; color: var(--sun); font-size: 16px; }
+@keyframes slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } html { scroll-behavior: auto; } .btn { transition: none; } }
+
+/* Sections */
+section.block { padding-block: 88px 24px; scroll-margin-top: 70px; }
+.sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; margin-bottom: 40px; }
+.sec-head > * { min-width: 0; }
+@media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; } }
+.sec-head h2 { font-size: clamp(36px, 5.5vw, 60px); font-weight: 800; margin-top: 10px; }
+.sec-head p { color: var(--muted); max-width: 46ch; justify-self: end; }
+@media (max-width: 760px) { .sec-head p { justify-self: start; } }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 860px) { .projects { grid-template-columns: 1fr; } }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.preview { background: var(--bg); border-bottom: 1px solid var(--line); padding: 20px; min-height: 270px; position: relative; }
+.tag-concept { position: absolute; top: 14px; right: 14px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; }
+.project-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.project-body h3 { font-size: 28px; font-weight: 700; }
+.project-body p { color: var(--muted); }
+.project-body .chips { margin-top: auto; padding-top: 8px; }
+
+/* Preview 1: chat + regions */
+.p1 { display: grid; grid-template-columns: 1fr 1.1fr; gap: 14px; margin-top: 18px; }
+.p1 > * { min-width: 0; }
+.bubble { font-size: 12.5px; line-height: 1.4; padding: 9px 12px; border-radius: 12px; max-width: 95%; }
+.bubble.q { background: var(--accent); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+:root[data-theme="dark"] .bubble.q { color: #0C1020; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bubble.q { color: #0C1020; } }
+.bubble.a { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.chat { display: flex; flex-direction: column; gap: 8px; }
+.regions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+.region { font-family: var(--f-mono); font-size: 10.5px; padding: 5px 7px; border-radius: 5px; background: color-mix(in srgb, var(--accent) var(--w, 15%), var(--surface)); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.region.hi { outline: 1.5px solid var(--sun); }
+.reg-head { display: flex; justify-content: space-between; margin-bottom: 6px; }
+
+/* Preview 2: attendance */
+.p2 { margin-top: 18px; display: grid; gap: 10px; }
+.p2-top { display: flex; gap: 10px; }
+.mini { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.mini b { font-family: var(--f-display); font-size: 15px; display: block; }
+.rows { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 12px; font-size: 13px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; }
+.row code { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.ok { color: var(--ok); font-weight: 700; font-family: var(--f-mono); font-size: 12px; }
+
+.gh-link { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 24px; padding: 22px 24px; border-radius: 20px; border: 1px dashed var(--line); text-decoration: none; transition: border-color .15s, background .15s; }
+.gh-link:hover { border-color: var(--accent); background: var(--surface); }
+.gh-link strong { font-family: var(--f-display); font-size: 20px; }
+.arrow { font-family: var(--f-mono); color: var(--accent); }
+
+/* Skills ledger */
+.ledger { border-top: 1px solid var(--ink); }
+.ledger-row { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding-block: 22px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.ledger-row > * { min-width: 0; }
+@media (max-width: 720px) { .ledger-row { grid-template-columns: 1fr; gap: 10px; } }
+.ledger-row h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; }
+.tool { font-weight: 600; font-size: 14.5px; padding: 7px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+
+/* Parcours */
+.path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.path > * { min-width: 0; }
+@media (max-width: 900px) { .path { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+.card h3 { font-size: 24px; font-weight: 700; }
+.card p { color: var(--muted); }
+.card .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 10px; }
+.langs { display: grid; gap: 10px; margin-top: 4px; }
+.lang { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; font-weight: 600; }
+.bar { grid-column: 1 / -1; height: 5px; border-radius: 3px; background: var(--bg); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.lang small { font-family: var(--f-mono); font-size: 11px; color: var(--muted); font-weight: 400; }
+
+/* Contact */
+.contact { margin-top: 88px; background: var(--ink); color: var(--bg); border-radius: 28px; overflow: hidden; }
+.contact-in { padding: clamp(28px, 6vw, 64px); display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; }
+.contact-in > * { min-width: 0; }
+@media (max-width: 860px) { .contact-in { grid-template-columns: 1fr; } }
+.contact .label { color: color-mix(in srgb, var(--bg) 65%, var(--ink)); }
+.contact h2 { font-size: clamp(38px, 6vw, 68px); font-weight: 800; margin-top: 12px; color: var(--bg); }
+.contact h2 em { font-style: normal; color: var(--sun); }
+.contact-lead { margin-top: 18px; color: color-mix(in srgb, var(--bg) 75%, var(--ink)); max-width: 42ch; }
+.channels { display: grid; gap: 10px; align-content: start; }
+.channel { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 16px 18px; border-radius: 14px; border: 1px solid color-mix(in srgb, var(--bg) 18%, var(--ink)); }
+.channel .label { grid-column: 1 / -1; font-size: 11px; }
+.channel .val { font-family: var(--f-display); font-weight: 600; font-size: clamp(16px, 2.2vw, 20px); overflow-wrap: anywhere; user-select: all; color: var(--bg); text-decoration: none; }
+.channel button, .channel a.go {
+  font: 500 12px/1 var(--f-mono); color: var(--ink); background: var(--bg); border: 0; border-radius: 999px; padding: 9px 13px; cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 32px 40px; color: var(--muted); font-size: 14px; }
+footer a { text-decoration: none; font-weight: 600; }
+footer a:hover { color: var(--accent); }
+
+.reveal { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.reveal.d1 { animation-delay: .08s; } .reveal.d2 { animation-delay: .16s; } .reveal.d3 { animation-delay: .24s; }
+@keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Retour en haut">ab<span>.</span></a>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+      </ul>
+    </nav>
+    <a class="btn primary" href="#contact">Parlons ensemble</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker reveal"><span class="dot" aria-hidden="true"></span><span class="label">Portfolio · Data, Web &amp; Mobile</span></div>
+        <h1 class="reveal d1">Asmaou<br><em>Baldé.</em></h1>
+        <p class="thesis reveal d2">Faire parler les données, pour des <mark>décisions éclairées</mark>.</p>
+        <p class="intro reveal d2">Étudiante en Analyse de Performance Digitale à l'ISEP Diamniadio et développeuse web &amp; mobile. Je construis des tableaux de bord clairs et des indicateurs qui comptent avec Power BI, Excel, SQL et Python.</p>
+        <div class="cta reveal d3">
+          <a class="btn primary" href="#projets">Découvrir mes projets
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn" href="https://github.com/asmaoubalde44-bit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a class="btn" href="https://wa.me/221783281164" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 13.5l.8-2.6A5.8 5.8 0 1 1 5.4 13l-2.9.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="where reveal d3">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 15s5-4.6 5-8.5A5 5 0 0 0 3 6.5C3 10.4 8 15 8 15Z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span class="label">Dakar, Sénégal</span>
+        </div>
+      </div>
+
+      <aside class="panel reveal d2" aria-label="Ma démarche">
+        <div class="panel-head">
+          <span class="label">Ma démarche</span>
+          <span class="label" style="color:var(--accent)">Données → Décisions</span>
+        </div>
+        <div class="stages">
+          <div class="stage">
+            <span class="n">IN</span>
+            <div>
+              <h3>Collecter &amp; nettoyer</h3>
+              <p>Requêtes SQL, Excel et Python pour obtenir une base fiable.</p>
+              <div class="chips"><span class="chip">SELECT … GROUP BY</span><span class="chip">pandas</span><span class="chip">PostgreSQL</span></div>
+            </div>
+          </div>
+          <div class="stage">
+            <span class="n">Σ</span>
+            <div>
+              <h3>Analyser</h3>
+              <p>Choisir les KPI qui répondent à une vraie question.</p>
+              <svg viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="0" y1="43" x2="300" y2="43" stroke="var(--line)" stroke-width="1"/>
+                <g fill="var(--accent)" opacity=".85">
+                  <rect x="4" y="26" width="26" height="17" rx="3"/><rect x="40" y="18" width="26" height="25" rx="3"/>
+                  <rect x="76" y="22" width="26" height="21" rx="3"/><rect x="112" y="12" width="26" height="31" rx="3"/>
+                  <rect x="148" y="16" width="26" height="27" rx="3"/><rect x="184" y="8" width="26" height="35" rx="3"/>
+                  <rect x="220" y="11" width="26" height="32" rx="3"/>
+                </g>
+                <rect x="256" y="3" width="26" height="40" rx="3" fill="var(--sun)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stage">
+            <span class="n">OUT</span>
+            <div>
+              <h3>Restituer</h3>
+              <p>Des tableaux de bord lisibles en un coup d'œil, sur Power BI ou le web.</p>
+              <div class="chips"><span class="chip">Power BI</span><span class="chip">Chart.js</span><span class="chip">Django</span></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Analyse de données</span><span>Business intelligence</span><span>Visualisation</span><span>Développement web</span><span>Applications mobiles</span><span>Intelligence artificielle</span>
+      <span>Analyse de données</span><span>Business intelligence</span><span>Visualisation</span><span>Développement web</span><span>Applications mobiles</span><span>Intelligence artificielle</span>
+    </div>
+  </div>
+
+  <!-- Projets -->
+  <section class="block" id="projets">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">Projets</span><h2>La data, en pratique.</h2></div>
+        <p>Les projets réalisés au fil de ma formation : analyse de données, visualisation et développement.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project">
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">Analyse régionale · Sénégal</span>
+            <div class="p1">
+              <div class="chat">
+                <div class="bubble q">Quelle région a la plus forte densité ?</div>
+                <div class="bubble a">Dakar arrive en tête, loin devant Thiès et Diourbel. Je l'affiche sur la carte.</div>
+                <div class="bubble q">Compare avec Kédougou.</div>
+              </div>
+              <div>
+                <div class="reg-head"><span class="label" style="font-size:10px">Régions</span><span class="label" style="font-size:10px;color:var(--ink)">14</span></div>
+                <div class="regions">
+                  <span class="region hi" style="--w:70%">Dakar</span><span class="region" style="--w:45%">Thiès</span>
+                  <span class="region" style="--w:42%">Diourbel</span><span class="region" style="--w:28%">Kaolack</span>
+                  <span class="region" style="--w:24%">Fatick</span><span class="region" style="--w:22%">Ziguinchor</span>
+                  <span class="region" style="--w:20%">Louga</span><span class="region" style="--w:20%">Saint-Louis</span>
+                  <span class="region" style="--w:18%">Kolda</span><span class="region" style="--w:17%">Sédhiou</span>
+                  <span class="region" style="--w:15%">Kaffrine</span><span class="region" style="--w:12%">Matam</span>
+                  <span class="region" style="--w:10%">Tambacounda</span><span class="region hi" style="--w:7%">Kédougou</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="label">Data &amp; intelligence artificielle</span>
+            <h3>Agent conversationnel IA</h3>
+            <p>Un assistant qui répond en langage naturel aux questions sur les statistiques régionales du Sénégal. Interface de chat, dashboard Chart.js et carte SVG interactive des 14 régions.</p>
+            <div class="chips"><span class="chip">IA</span><span class="chip">Chart.js</span><span class="chip">SVG</span><span class="chip">JavaScript</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">SmartPresent · Présences</span>
+            <div class="p2">
+              <div class="p2-top">
+                <div class="mini"><span class="label" style="font-size:10px">Séance</span><b>Aujourd'hui</b></div>
+                <div class="mini"><span class="label" style="font-size:10px">Vue</span><b>Tableau de bord</b></div>
+              </div>
+              <div class="rows">
+                <div class="row"><span>Enregistrement des étudiants</span><span class="ok">✓</span></div>
+                <div class="row"><span>Suivi des présences</span><span class="ok">✓</span></div>
+                <div class="row"><span>Authentification</span><code>JWT</code></div>
+                <div class="row"><span>Point d'accès</span><code>GET /api/presences/</code></div>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="label">Projet académique · en équipe</span>
+            <h3>SmartPresent</h3>
+            <p>Application de suivi et d'analyse des présences. J'y ai tenu le rôle backend : API Django REST, dashboard web et gestion du dépôt GitHub de l'équipe.</p>
+            <div class="chips"><span class="chip">Django</span><span class="chip">REST API</span><span class="chip">JWT</span><span class="chip">GitHub</span></div>
+          </div>
+        </article>
+      </div>
+
+      <a class="gh-link" href="https://github.com/asmaoubalde44-bit" target="_blank" rel="noopener">
+        <div><span class="label">Code source</span><br><strong>Tous mes projets sur GitHub</strong></div>
+        <span class="arrow">github.com/asmaoubalde44-bit ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Compétences -->
+  <section class="block" id="competences">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">Compétences</span><h2>Ma boîte à outils.</h2></div>
+        <p>Analyser les données, visualiser les résultats et développer les applications qui les rendent utiles.</p>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row"><h3>Data &amp; business intelligence</h3><div class="tools"><span class="tool">Power BI</span><span class="tool">Excel</span><span class="tool">Tableaux de bord</span><span class="tool">KPI</span></div></div>
+        <div class="ledger-row"><h3>Analyse &amp; langages</h3><div class="tools"><span class="tool">Python</span><span class="tool">SQL</span><span class="tool">JavaScript</span><span class="tool">HTML</span><span class="tool">CSS</span></div></div>
+        <div class="ledger-row"><h3>Visualisation &amp; web</h3><div class="tools"><span class="tool">Chart.js</span><span class="tool">Django</span><span class="tool">REST API</span><span class="tool">JWT</span></div></div>
+        <div class="ledger-row"><h3>Applications mobiles</h3><div class="tools"><span class="tool">Flutter</span></div></div>
+        <div class="ledger-row"><h3>Bases de données</h3><div class="tools"><span class="tool">PostgreSQL</span><span class="tool">Requêtes SQL</span></div></div>
+        <div class="ledger-row"><h3>Outils &amp; collaboration</h3><div class="tools"><span class="tool">Git &amp; GitHub</span><span class="tool">VS Code</span><span class="tool">Power Apps</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parcours -->
+  <section class="block" id="parcours">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">Parcours</span><h2>Apprendre, aller plus loin.</h2></div>
+        <p>Une formation centrée sur la performance digitale, complétée par l'entrepreneuriat.</p>
+      </div>
+      <div class="path">
+        <div class="card">
+          <span class="label">Formation · 2025 – 2026</span>
+          <h3>Analyse de Performance Digitale</h3>
+          <p>ISEP Diamniadio. Analyse de données, indicateurs de performance, business intelligence et développement.</p>
+          <div class="meta"><span class="chip">Niveau L2</span><span class="chip">Diamniadio</span></div>
+        </div>
+        <div class="card">
+          <span class="label">Certification · Août 2026</span>
+          <h3>Initiation à l'entrepreneuriat</h3>
+          <p>Délivrée par MINAPRO et Desjardins (Canada), à Rufisque.</p>
+          <div class="meta"><span class="chip">MINAPRO</span><span class="chip">Desjardins</span></div>
+        </div>
+        <div class="card">
+          <span class="label">Langues</span>
+          <h3>Des échanges sans frontières</h3>
+          <div class="langs">
+            <div class="lang">Français <small>Langue maternelle</small><span class="bar"><i style="width:100%"></i></span></div>
+            <div class="lang">Pulaar <small>Langue maternelle</small><span class="bar"><i style="width:100%"></i></span></div>
+            <div class="lang">Wolof <small>Notions</small><span class="bar"><i style="width:40%"></i></span></div>
+            <div class="lang">Anglais <small>Niveau scolaire</small><span class="bar"><i style="width:50%"></i></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="wrap" style="scroll-margin-top:70px">
+    <div class="contact">
+      <div class="contact-in">
+        <div>
+          <span class="label">Contact</span>
+          <h2>Et si on créait quelque chose <em>ensemble</em> ?</h2>
+          <p class="contact-lead">Stage, projet data, tableau de bord ou application web : je réponds rapidement par e-mail ou sur WhatsApp.</p>
+        </div>
+        <div class="channels">
+          <div class="channel">
+            <span class="label">E-mail</span>
+            <span class="val" id="email">asmaoubalde44@gmail.com</span>
+            <button type="button" data-copy="email">Copier</button>
+          </div>
+          <div class="channel">
+            <span class="label">WhatsApp</span>
+            <span class="val" id="phone">+221 78 328 11 64</span>
+            <a class="go" href="https://wa.me/221783281164" target="_blank" rel="noopener">Écrire ↗</a>
+          </div>
+          <div class="channel">
+            <span class="label">GitHub</span>
+            <a class="val" href="https://github.com/asmaoubalde44-bit" target="_blank" rel="noopener">asmaoubalde44-bit</a>
+            <a class="go" href="https://github.com/asmaoubalde44-bit" target="_blank" rel="noopener">Voir ↗</a>
+          </div>
+          <div class="channel">
+            <span class="label">Localisation</span>
+            <span class="val">Dakar, Sénégal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top">ab<span>.</span></a>
+    <span>© 2026 Asmaou Baldé</span>
+    <a href="#top">Retour en haut ↑</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.getAttribute('data-copy'));
+    var text = el.textContent.trim();
+    function done() { btn.textContent = 'Copié'; setTimeout(function () { btn.textContent = 'Copier'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Sélectionné';
+      setTimeout(function () { btn.textContent = 'Copier'; }, 1800);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>
