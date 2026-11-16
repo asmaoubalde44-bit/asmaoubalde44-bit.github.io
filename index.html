@@ -171,6 +171,44 @@ section.block { padding-block: 88px 24px; scroll-margin-top: 70px; }
 .row code { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
 .ok { color: var(--ok); font-weight: 700; font-family: var(--f-mono); font-size: 12px; }
 
+.project.featured { grid-column: 1 / -1; }
+.project.featured .preview { min-height: 0; }
+.project-body p strong { color: var(--ink); }
+.proj-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.proj-links a { font-family: var(--f-mono); font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500; }
+.proj-links a:hover { text-decoration: underline; }
+/* CIAT preview */
+.ciat { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; margin-top: 18px; }
+.ciat > * { min-width: 0; }
+@media (max-width: 640px) { .ciat { grid-template-columns: 1fr; } }
+.mods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mod { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.mod small { font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.mod b { display: block; font-size: 13px; line-height: 1.3; margin: 2px 0 8px; }
+.mbar { display: block; height: 6px; border-radius: 3px; background: var(--bg); overflow: hidden; }
+.mbar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+/* BirdSense preview */
+.bird { margin-top: 18px; display: grid; gap: 12px; }
+.scan { position: relative; height: 150px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 22%, var(--surface)), color-mix(in srgb, var(--ok) 18%, var(--surface))); }
+.bbox { position: absolute; border: 2px solid var(--sun); border-radius: 4px; }
+.bbox.alt { border-color: var(--accent); }
+.bbox em { position: absolute; top: -1px; left: -2px; transform: translateY(-100%); font-style: normal; font-family: var(--f-mono); font-size: 10px; background: var(--sun); color: #111827; padding: 1px 5px; border-radius: 3px 3px 0 0; white-space: nowrap; }
+.bbox.alt em { background: var(--accent); color: #fff; }
+.count { position: absolute; right: 8px; bottom: 8px; font-family: var(--f-mono); font-size: 11px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 11.5px; padding: 4px 9px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+/* La Main preview */
+.site { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.site-nav { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11.5px; }
+.site-nav span { color: var(--muted); font-family: var(--f-mono); font-size: 10.5px; }
+.site-hero { padding: 18px 12px; background: color-mix(in srgb, var(--ok) 14%, var(--surface)); display: grid; gap: 4px; }
+.site-hero strong { font-family: var(--f-display); font-size: 18px; line-height: 1.15; }
+.site-hero span { font-size: 12px; color: var(--muted); }
+.site-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px 12px; }
+.site-cards span { font-size: 11px; text-align: center; padding: 8px 4px; border-radius: 6px; background: var(--bg); min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 420px) { .site-cards { grid-template-columns: 1fr 1fr; } }
+
 .gh-link { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 24px; padding: 22px 24px; border-radius: 20px; border: 1px dashed var(--line); text-decoration: none; transition: border-color .15s, background .15s; }
 .gh-link:hover { border-color: var(--accent); background: var(--surface); }
 .gh-link strong { font-family: var(--f-display); font-size: 20px; }
@@ -326,10 +364,38 @@ footer a:hover { color: var(--accent); }
     <div class="wrap">
       <div class="sec-head">
         <div><span class="label">Projets</span><h2>La data, en pratique.</h2></div>
-        <p>Les projets réalisés au fil de ma formation : analyse de données, visualisation et développement.</p>
+        <p>Cinq projets réalisés en formation, en équipe et en hackathon : tableaux de bord, intelligence artificielle et développement web.</p>
       </div>
 
       <div class="projects">
+        <article class="project featured">
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">CIAT Décisionnel · ISEP Diamniadio</span>
+            <div class="ciat">
+              <div class="mods">
+                <div class="mod"><small>Module</small><b>Performances d'incubation</b><span class="mbar"><i style="width:72%"></i></span></div>
+                <div class="mod"><small>Module</small><b>Calendrier des jalons</b><span class="mbar"><i style="width:48%"></i></span></div>
+                <div class="mod"><small>Module</small><b>Parité de genre</b><span class="mbar"><i style="width:50%"></i></span></div>
+                <div class="mod"><small>Module</small><b>Exports multi-formats</b><span class="mbar"><i style="width:85%"></i></span></div>
+              </div>
+              <div class="chat">
+                <span class="label" style="font-size:10px">Assistant décisionnel IA</span>
+                <div class="bubble q">Quels projets sont en retard sur leurs jalons ?</div>
+                <div class="bubble a">Je filtre les jalons dépassés et j'affiche la liste par projet.</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="label">IA générative · Projet en binôme · Promotion 2026</span>
+            <h3>Dashboard CIAT</h3>
+            <p>Tableau de bord décisionnel du Centre d'Innovation, d'Application et de Transfert (CIAT) et de l'incubateur de l'ISEP Diamniadio. La direction et les partenaires y suivent les performances d'incubation, le calendrier des jalons et la parité de genre, et interrogent les données en langage naturel grâce à un assistant IA.</p>
+            <p><strong>Mon rôle :</strong> développeuse, architecture logicielle, web responsive et intégration de l'IA (gestion des rôles, formulaires validés, persistance des données, moteur de l'assistant). Projet réalisé avec Massouda Dieng (data analyst &amp; infographe).</p>
+            <div class="chips"><span class="chip">JavaScript</span><span class="chip">IA générative</span><span class="chip">Graphiques SVG</span><span class="chip">SQL</span><span class="chip">KPI</span></div>
+            <div class="proj-links"><a href="https://github.com/asmaoubalde44-bit/Dashboard-CIAT" target="_blank" rel="noopener">Voir le code ↗</a></div>
+          </div>
+        </article>
+
         <article class="project">
           <div class="preview" aria-hidden="true">
             <span class="tag-concept">Aperçu conceptuel</span>
@@ -384,6 +450,52 @@ footer a:hover { color: var(--accent); }
             <h3>SmartPresent</h3>
             <p>Application de suivi et d'analyse des présences. J'y ai tenu le rôle backend : API Django REST, dashboard web et gestion du dépôt GitHub de l'équipe.</p>
             <div class="chips"><span class="chip">Django</span><span class="chip">REST API</span><span class="chip">JWT</span><span class="chip">GitHub</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">BirdSense AI · Détection</span>
+            <div class="bird">
+              <div class="scan">
+                <span class="bbox" style="left:12%;top:22%;width:26%;height:34%"><em>oiseau 0.94</em></span>
+                <span class="bbox" style="left:52%;top:40%;width:22%;height:30%"><em>oiseau 0.88</em></span>
+                <span class="bbox alt" style="left:78%;top:14%;width:16%;height:22%"><em>oiseau 0.71</em></span>
+                <span class="count">Comptage : 3</span>
+              </div>
+              <div class="tags">
+                <span>Détection IA</span><span>Reconnaissance audio</span><span>Scan par drone</span><span>Carte</span><span>Alertes espèces rares</span><span>Guide des espèces</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="label">Hackathon · Intelligence artificielle</span>
+            <h3>BirdSense AI</h3>
+            <p>Application de comptage et d'identification intelligente des oiseaux. Détection par vision artificielle dans le navigateur, reconnaissance audio, vue drone, carte, tableau de bord analytique, alertes sur les espèces rares et guide des espèces.</p>
+            <div class="chips"><span class="chip">React</span><span class="chip">TensorFlow.js</span><span class="chip">COCO-SSD</span><span class="chip">Tailwind CSS</span><span class="chip">Vite</span></div>
+            <div class="proj-links"><a href="https://birdsense-ai.vercel.app" target="_blank" rel="noopener">Voir le site ↗</a><a href="https://github.com/asmaoubalde44-bit/birdsense-ai" target="_blank" rel="noopener">Voir le code ↗</a></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="preview" aria-hidden="true">
+            <span class="tag-concept">Aperçu conceptuel</span>
+            <span class="label">Site vitrine · Vélingara</span>
+            <div class="site">
+              <div class="site-nav"><b>La Main de l'Agriculture</b><span>Accueil · À propos · Services · Galerie · Contact</span></div>
+              <div class="site-hero"><strong>Le légume cultivé avec rigueur</strong><span>Production maraîchère et accompagnement technique</span></div>
+              <div class="site-cards">
+                <span>Visite technique</span><span>Suivi mensuel</span><span>Irrigation</span><span>Fertilisation</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="label">Développement web · Site vitrine</span>
+            <h3>La Main de l'Agriculture</h3>
+            <p>Site vitrine d'une activité de production maraîchère et de visites techniques agricoles à Vélingara : présentation, services (conseil maraîcher, irrigation, fertilisation, traitements, rotations), galerie des récoltes et contact.</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub Pages</span></div>
+            <div class="proj-links"><a href="https://asmaoubalde44-bit.github.io/lamaindelagriculture/" target="_blank" rel="noopener">Voir le site ↗</a><a href="https://github.com/asmaoubalde44-bit/lamaindelagriculture" target="_blank" rel="noopener">Voir le code ↗</a></div>
           </div>
         </article>
       </div>
